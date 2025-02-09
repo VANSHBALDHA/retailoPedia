@@ -1,0 +1,111 @@
+.retailopediaSection {
+    margin: 100px 0;
+    padding: 70px 0;
+    background: linear-gradient(to right, #f3f2f0 66%, transparent 34%);
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .retailopediaSectionAr {
+    background: linear-gradient(to left, #f3f2f0 66%, transparent 34%);
+  }
+
+  .sectionHeading {
+    color: #b24020;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 40px;
+  }
+  
+  .sectionInfo {
+    font-weight: 300;
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .businessLeadBox {
+    display: grid;
+    gap: 15px;
+    margin-top: 25px;
+  }
+  
+  .businessBox {
+    background-color: #eae6df;
+    padding: 15px;
+    max-width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .businessBox:hover {
+    background-color: #d4ccb7;
+  }
+  
+  .businessBox a {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+  }
+  
+  .businessBoxArrow {
+    width: 10px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+  
+  .businessBox:hover .businessBoxArrow {
+    transform: translateX(5px);
+  }
+  
+  .retailopediaImg {
+    right: 0;
+    width: 35%;
+    height: calc(100% + 100px);
+  }
+  
+  .retailopediaImgAr{
+    right: unset;
+    left: 0;
+    width: 35%;
+    height: calc(100% + 100px);
+  }
+
+  .storeImage {
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    width: 100%;
+    user-select: none;
+    pointer-events: none;
+  }
+  
+  @media screen and (max-width: 767px) {
+    .retailopediaSection {
+      background: linear-gradient(to right, #f3f2f0 100%, transparent 34%);
+      margin: 0;
+    }
+
+    .retailopediaSectionAr {
+      background: linear-gradient(to left, #f3f2f0 100%, transparent 34%);
+      margin: 0;
+    }
+
+    .retailopediaSectionAr .retailopediaImgAr{
+      opacity: 0.1;
+        width: 100%;
+        left: 0;
+        height: 100%;
+    }
+    
+    .retailopediaSection .retailopediaImg{
+      opacity: 0.1;
+        width: 100%;
+        left: 0;
+        height: 100%;
+    }
+  }

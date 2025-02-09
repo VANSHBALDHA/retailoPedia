@@ -1,0 +1,84 @@
+.header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 2rem;
+    gap: 1.7rem;
+    align-items: center;
+  }
+  
+  .mobileApp {
+    text-align: center;
+    border-left: 1px solid #00000014;
+    border-right: 1px solid #00000014;
+    padding: 0 10px;
+    cursor: pointer;
+  }
+  .mobileApp a{
+    font-size: 11px;
+    font-weight: 400;
+    text-decoration: none;    
+    color: #565151e0;
+  }
+
+  .mobileApp p{
+    margin-bottom: 4px;
+  }
+  .headerImg {
+    width: 28px;
+    height: auto;
+    user-select: none;
+    pointer-events: none;
+    -webkit-user-drag: none;
+}
+
+  .joinButton {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    border: none;
+    z-index: 1;
+    background: transparent;
+    color: #000000bf;
+}
+
+  
+  .headerButton {
+    font-size: 16px;
+    line-height: 24px;
+    border: none;
+  }
+  
+
+  .signInButton {
+    border: 1px solid #3696a0;
+    color: #3696a0;
+    background-color: transparent;
+    font-weight: 700;
+    border-radius: 24px;
+    padding: 7px 30px;
+    text-align: center;
+    font-size: 16px;
+    z-index: 1;
+    line-height: 24px;
+    cursor: pointer !important;
+    transition: all 0.2s;
+    align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .joinButton {
+    font-size: 12px;
+  }
+
+  .signInButton {
+    padding: 6px 24px;
+    font-size: 14px;
+  }
+  .header {
+    justify-content: space-between;
+    height: 100%;
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+}

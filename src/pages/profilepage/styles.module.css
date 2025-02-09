@@ -1,0 +1,307 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+* {
+  font-family: "Inter", sans-serif;
+}
+
+.searchContainer {
+  margin: 20px auto;
+  background: #f6f6f6;
+  border-radius: 1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchContainer img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.searchBox {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 1px;
+  font-size: 16px;
+  outline: none;
+  background-color: #f6f6f6;
+}
+
+.searchBox::placeholder {
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 2px;
+}
+
+.profileSection {
+  background-color: #f6f6f6;
+  padding: 65px 0 65px 35px;
+  overflow: hidden;
+}
+
+.profileSection .profileLeft .profileMenu {
+  border: 2px solid #000;
+  margin-top: 25px;
+  text-align: left;
+}
+
+.profileSection .profileLeft .profileMenuName {
+  border-bottom: 2px solid #000;
+}
+
+.profileSection .profileLeft .profileMenuName a {
+  text-decoration: none;
+}
+
+.profileSection .profileLeft .profileMenuName:last-child {
+  border-bottom: none;
+}
+
+.profileSection .profileLeft .profileMenuName h4 {
+  font-weight: 800;
+  font-size: 18px;
+  color: #2e2e2e;
+  margin: 20px 0 20px 20px;
+}
+
+.profileSection .profileInfo {
+  background-color: #fff;
+  padding: 32px 54px;
+  margin-bottom: 34px;
+}
+
+.profileSection .profileInfo h5 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.profileSection .profileInfo h1 {
+  font-size: 45px;
+  font-weight: 900;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.profileSection .profileInfo .companyName {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.profileSection .profileInfo .companyName span {
+  font-size: 22px;
+  font-style: italic;
+  margin: 0;
+}
+
+.profileSection .profileInfo .companyName h3 {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.profileSection .profileInfo .directorName {
+  margin-bottom: 24px;
+}
+
+.profileSection .profileInfo .directorName h3 {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.profileSection .profileInfo .directorName span {
+  font-size: 22px;
+  font-style: italic;
+}
+
+.profileSection .profileInfo .companyLocation {
+  display: flex;
+  justify-content: space-between;
+  color: #787878;
+  margin-bottom: 25px;
+}
+
+.profileSection .profileInfo .companyLocation .location {
+  display: flex;
+  align-items: center;
+}
+
+.profileSection .profileInfo .companyLocation h4 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.profileSection .profileInfo .companyLocation span {
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+.profileInfo .profileContent p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.profileInfo .profileContent .timeline {
+  background-color: #f6f6f6;
+  padding: 15px;
+}
+
+.profileInfo .profileContent .timeline .timelineYear {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profileInfo .profileContent .timeline .timelineYear span {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.profileInfo .profileContent .yearWiseContent {
+  height: 540px;
+  overflow-y: auto;
+}
+
+.profileInfo .profileContent .timeLineContent {
+  margin-bottom: 32px;
+}
+
+.profileInfo .profileContent .timeLineContent h3 {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.profileInfo .profileContent .timeLineContent span {
+  color: #8f8f8f;
+  font-size: 18px;
+}
+
+.profileSection .profileCompany {
+  background-color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+  height: 100%;
+}
+
+.profileSection .profileCompany .relatedCompany {
+  border-bottom: 2px solid #000;
+}
+
+.profileSection .profileCompany .relatedCompany h3 {
+  font-size: 26px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.profileSection .profileCompany .companyLogos {
+  border-bottom: 2px solid #000;
+}
+
+.profileSection .profileCompany .companyLogos img {
+  margin: 15px 0;
+}
+
+.profileSection .profileCompany .similarProfile {
+  margin-top: 88px;
+}
+
+.profileSection .profileCompany .similarProfile .companyNames {
+  border-bottom: 2px solid #000;
+}
+
+.profileSection .profileCompany .similarProfile .companyNames .companyRow {
+  margin: 20px 0;
+}
+
+.profileSection .profileCompany .similarProfile .companyNames h3 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 800;
+}
+
+.profileSection .profileCompany .similarProfile .companyNames span {
+  font-size: 18px;
+  margin: 0;
+  font-style: italic;
+}
+
+.profileSection .profileCompany .similarProfile .companyNames h4 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.profileSection .profileCompany .similarProfile .seeMore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.profileSection .profileCompany .similarProfile .seeMore h3 {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.profileInfo .socialIcon {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+@media (max-width: 767px) {
+  .profileSection {
+    padding: 0;
+  }
+
+  .profileSection .profileInfo {
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .profileSection .profileInfo h1 {
+    font-size: 40px;
+    text-align: center;
+  }
+
+  .profileSection .profileInfo .companyName {
+    display: grid;
+    gap: 20px;
+  }
+
+  .profileSection .profileInfo .companyLocation {
+    display: grid;
+    gap: 5px;
+  }
+
+  .profileInfo .profileContent .yearWiseContent {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 991px) {
+  .profileSection {
+    padding: 0;
+  }
+
+  .profileSection .profileInfo {
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .profileSection .profileCompany {
+    text-align: left;
+  }
+}

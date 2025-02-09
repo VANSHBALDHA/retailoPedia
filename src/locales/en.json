@@ -1,0 +1,59 @@
+{
+    "home":{
+        "header":{
+            "getApp": "Get the app",
+            "joinNow": "Join Now",
+            "signIn":"Sign in"
+        },
+        "footer":{
+            "quickLinks" : "Quick Links",
+            "people" : "People",
+            "retailIcons": "Retail Icons",
+            "ceos": "CEOs",
+            "womenLeaders": "Women Leaders",
+            "cios": "CIOs",
+            "companies": "Companies",
+            "brands": "Brands",
+            "techProviders": "Tech Providers",
+            "malls": "Malls",
+            "consultants": "Consultants",
+            "othrSrvcPrds": "Other Service Providers",
+            "cntcts":  "Contacts",
+            "home": "Home",
+            "support": "Support",
+            "contact": "Contact",
+            "keepTouch": "Keep in touch",
+            "yourEml" : "Your Email",
+            "submit": "Submit",
+            "follous": "Follow Us",
+            "toc":"Terms & Conditions",
+            "privacy": "Privacy Policy"
+        },
+        "heroArea" :{
+            "tagline":"Stories. Strategies. Connections.",
+            "heroTxtOne": "Retailopedia is the ultimate digital index for the retail world.",
+            "heroTxtTwo": "It documents leaders' journeys, decodes retail strategies and connects the entire retail community.",
+            "heroTxtThree": "Part knowledge resource, part social network, part data powerhouse.",
+            "heroTxtFour": "Built for those who shape retail and those who aspire to.",
+            "heroTxtFive": "If it's retail, it's here.",
+            "googleSignup": "Continue with Google",
+            "emailSignup" : "Sign in with emai",
+            "policyclick": "By clicking Continue to join or sign in, you agree to Retailopedia's",
+            "usrAgreement": "User Agreement",
+            "privacyPolicy": "Privacy Policy",
+            "andtxt": "and",
+            "cookiePolicy": "Cookie Policy",
+            "newtoRetailo" : "New to Retailopedia?",
+            "joinNow": "Join Now"
+        },
+        "homeOthrSec": {
+            "empwDesc": "Retailopedia Empowering Your Retail Journey, One Insight at a Time.",
+            "getStrtd": "Get Started",
+            "whoRetailFor": "Who is Retailopedia for?",
+            "gatewayTxt": "Your Gateway to Retail Insights and Innovation.",
+            "bussLdrsTxt": "Business Leaders and Entrepreneurs",
+            "marktTxt": "Marketing and Brand Strategists",
+            "studentsTxt": "Students and Retail Enthusiasts"
+        }
+    }
+}
