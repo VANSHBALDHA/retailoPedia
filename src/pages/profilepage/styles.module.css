@@ -2,6 +2,8 @@
 
 * {
   font-family: "Inter", sans-serif;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .searchContainer {
@@ -15,8 +17,10 @@
 
 .searchContainer img {
   position: absolute;
+  left: 34%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-34%, -50%);
+  width: 18px;
 }
 
 .searchBox {
@@ -35,6 +39,7 @@
   font-size: 16px;
   font-weight: 200;
   letter-spacing: 2px;
+  text-align: center;
 }
 
 .profileSection {
@@ -155,14 +160,56 @@
 
 .profileInfo .profileContent .timeline .timelineYear {
   display: flex;
-  gap: 13px;
-  align-items: center;
-  margin-bottom: 10px;
 }
 
-.profileInfo .profileContent .timeline .timelineYear span {
+.csmCheckbox input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.csmCheckbox label {
+  position: relative;
+  cursor: pointer;
+  color: #000;
+  display: flex;
+  margin-bottom: 10px;
   font-size: 16px;
   font-weight: 600;
+  align-items: center;
+  gap: 12px;
+}
+
+.csmCheckbox label:before {
+  content: "";
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 2px solid #b6b6b6;
+  width: 19px;
+  height: 18px;
+  /* padding: 10px; */
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+
+.csmCheckbox input:checked + label:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 6px;
+  left: 7px;
+  width: 5px;
+  height: 10px;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
 .profileInfo .profileContent .yearWiseContent {
@@ -182,6 +229,36 @@
 .profileInfo .profileContent .timeLineContent span {
   color: #8f8f8f;
   font-size: 18px;
+}
+
+.profileInfo .profileContent .award {
+  display: flex;
+  align-items: center;
+  margin-bottom: 35px;
+  margin-top: 13px;
+}
+
+.profileInfo .profileContent .award .awardText {
+  max-width: 500px;
+}
+
+.profileInfo .profileContent .award .awardText h5 {
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.profileInfo .profileContent .award .awardText span {
+  font-size: 16px;
+  margin: 0;
+}
+
+.profileInfo .profileContent .news h6 {
+  color: #2c7279;
+  font-size: 16px;
+  font-weight: 700;
+  border-bottom: 2px solid #2c7279;
+  cursor: pointer;
 }
 
 .profileSection .profileCompany {
@@ -208,6 +285,104 @@
 
 .profileSection .profileCompany .companyLogos img {
   margin: 15px 0;
+}
+
+.profileContent .galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.galleryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.galleryImage:hover {
+  transform: scale(1.05);
+}
+
+.profileInfo .videoSlider img {
+  margin-bottom: 16px;
+}
+
+.profileInfo .videoSlider h4 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.profileInfo .videoSlider span {
+  font-size: 18px;
+}
+
+.profileInfo .videoSlider p {
+  margin-top: 15px;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.toggleImg {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* ARTICLES STYLES */
+
+.articleBox {
+  margin-top: 33px;
+}
+
+.articleBox .articleSlider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0;
+}
+
+.articleBox .articleSlider h4 {
+  font-size: 18px;
+  font-weight: 800;
+  max-width: 250px;
+}
+
+.articleBox span {
+  color: #8f8f8f;
+  font-size: 16px;
+  margin: 0;
+  font-weight: 400;
+}
+
+.articleBox p {
+  margin-top: 30px;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.profileInfo .articleSection {
+  position: relative;
+}
+
+.arrowImg {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.left {
+  left: -35px;
+}
+
+.right {
+  right: -35px;
 }
 
 .profileSection .profileCompany .similarProfile {
