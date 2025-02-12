@@ -24,6 +24,21 @@
   padding: 15px 20px;
 }
 
+.profileSection .profileOverViews {
+  display: flex;
+  border-bottom: 2px solid #00000014;
+  padding: 15px 20px;
+  background-color: #717984;
+  gap: 10px;
+}
+
+.profileSection .profileOverViews h4 {
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0;
+  color: #fff;
+}
+
 .profileMenuName.active {
   background-color: #717984;
   color: #fff;
@@ -296,13 +311,14 @@
 
 .profileSection .profileCompany .companyLogos img {
   margin: 15px 0;
-  /* width: 250px; */
+  width: 100%;
 }
 
 .profileContent .galleryGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
+  cursor: pointer;
 }
 
 .galleryImage {

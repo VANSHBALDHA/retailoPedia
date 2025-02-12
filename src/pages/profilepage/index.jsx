@@ -24,17 +24,17 @@ import leftArrow from "../../assets/images/leftArrow.svg";
 import rightArrow from "../../assets/images/rightArrow.svg";
 import Header from "./pageModules/Header";
 import { useQuery } from "@tanstack/react-query";
-
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
 import profileIcon from "../../assets/images/profileMenu1.svg";
-import profileIcon1 from "../../assets/images/profileImageName2.svg";
 import profileIcon2 from "../../assets/images/profileImageName3.svg";
 import profileIcon3 from "../../assets/images/profileImageName4.svg";
 import profileIcon4 from "../../assets/images/profileImageName5.svg";
 import profileIcon5 from "../../assets/images/profileImageName6.svg";
 import profileIcon6 from "../../assets/images/profileImageName7.svg";
 import profileIcon7 from "../../assets/images/profileImageName8.svg";
-import profileIcon8 from "../../assets/images/profileImageName2.svg";
 import profileIcon9 from "../../assets/images/profileImageName2.svg";
+import profileOverview from "../../assets/images/computeProfile.svg";
 
 import profileServices from "../../services/Profile";
 
@@ -88,12 +88,24 @@ const profileMenu = [
   },
 ];
 
+const photoGallery = [
+  photoGallery1,
+  photoGallery2,
+  photoGallery3,
+  photoGallery4,
+  photoGallery5,
+  photoGallery6,
+];
+
 const ProfilePage = () => {
   const videoSec = useRef(null);
   const articleSec = useRef(null);
+  const gallerySec = useRef(null);
   const [activeLink, setActiveLink] = useState("");
   const [showMore, setShowMore] = useState(false);
   const [checkedYears, setCheckedYears] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [openSections, setOpenSections] = useState({
     earlyLife: true,
     career: true,
@@ -134,6 +146,25 @@ const ProfilePage = () => {
   const similarProfileList = data?.similarProfile || [];
   const peopleDataList = data?.peopleData || [];
 
+  const openLightbox = (index) => {
+    setCurrentIndex(index);
+    setIsOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setIsOpen(false);
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % photoGallery.length);
+  };
+
+  const goToPrevious = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + photoGallery.length) % photoGallery.length
+    );
+  };
+
   if (isLoading && !data?.length)
     return (
       <div className={styles.loaderContainer}>
@@ -156,6 +187,14 @@ const ProfilePage = () => {
                   className={styles.profileImagePhoto}
                 />
                 <div className={styles.profileMenu}>
+                  <div className={styles.profileOverViews}>
+                    <img
+                      src={profileOverview}
+                      alt=""
+                      className={styles.profileIcons}
+                    />
+                    <h4>PROFILE OVERVIEW</h4>
+                  </div>
                   {profileMenu?.map((item, index) => (
                     <div
                       key={item.id}
@@ -472,29 +511,79 @@ const ProfilePage = () => {
               {/* PHOTO GALLERY */}
               <div className={styles.profileInfo}>
                 <h5>PHOTO GALLERY</h5>
-                <div className={styles.profileContent}>
-                  <div className="row">
-                    <div className="col-md-12">
-                      <div className={styles.galleryGrid}>
-                        {[
-                          photoGallery1,
-                          photoGallery2,
-                          photoGallery3,
-                          photoGallery4,
-                          photoGallery5,
-                          photoGallery6,
-                        ].map((src, index) => (
-                          <img
-                            key={index}
-                            src={src}
-                            alt={`photo-gallery-${index + 1}`}
-                            className={styles.galleryImage}
-                          />
-                        ))}
-                      </div>
-                    </div>
+                <div
+                  className={`${styles.profileContent} ${styles.articleSection}`}
+                >
+                  <div>
+                    <img
+                      src={leftArrow}
+                      alt="left-arrow"
+                      className={`${styles.arrowImg} ${styles.left}`}
+                      onClick={() => gallerySec?.current?.slidePrev()}
+                    />
+                    <img
+                      src={rightArrow}
+                      alt="right-arrow"
+                      className={`${styles.arrowImg} ${styles.right}`}
+                      onClick={() => gallerySec?.current?.slideNext()}
+                    />
                   </div>
+                  <Swiper
+                    modules={[Autoplay]}
+                    onSwiper={(swiper) => (gallerySec.current = swiper)}
+                    breakpoints={{
+                      0: { slidesPerView: 1, spaceBetween: 20 },
+                      768: { slidesPerView: 1, spaceBetween: 40 },
+                      1199: { slidesPerView: 1, spaceBetween: 40 },
+                    }}
+                    loop={true}
+                    autoplay={{ delay: 4000, disableOnInteraction: false }}
+                    pagination={{
+                      clickable: true,
+                      el: ".swiper-pagination",
+                    }}
+                  >
+                    {peopleDataList?.videoLinks?.map((data, index) => (
+                      <SwiperSlide key={index}>
+                        <div className="row">
+                          <div className="col-md-12">
+                            <div className={styles.galleryGrid}>
+                              {photoGallery?.map((src, index) => (
+                                <img
+                                  key={index}
+                                  src={src}
+                                  alt={`photo-gallery-${index + 1}`}
+                                  className={styles.galleryImage}
+                                  onClick={() => openLightbox(index)}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
                 </div>
+                {isOpen && (
+                  <Lightbox
+                    mainSrc={photoGallery[currentIndex]}
+                    nextSrc={
+                      photoGallery[(currentIndex + 1) % photoGallery.length]
+                    }
+                    prevSrc={
+                      photoGallery[
+                        (currentIndex - 1 + photoGallery.length) %
+                          photoGallery.length
+                      ]
+                    }
+                    onCloseRequest={closeLightbox}
+                    onMovePrevRequest={goToPrevious}
+                    onMoveNextRequest={goToNext}
+                    imageTitle={`Photo ${currentIndex + 1} of ${
+                      photoGallery.length
+                    }`}
+                  />
+                )}
               </div>
 
               {/* VIDEOS */}

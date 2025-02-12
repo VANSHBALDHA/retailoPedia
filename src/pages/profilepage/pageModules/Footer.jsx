@@ -58,11 +58,9 @@ const Footer = () => {
             {footerData.map((section) => (
               <div>
                 <h3>{section?.title}</h3>
-                <div>
+                <div className="d-grid gap-2 mt-3">
                   {section?.links.map((link, index) => (
-                    <h5 key={index}>
-                      <Link to="/profile">{link}</Link>
-                    </h5>
+                    <Link to="/profile">{link}</Link>
                   ))}
                 </div>
               </div>
