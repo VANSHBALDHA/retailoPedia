@@ -1,45 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=ABeeZee&display=swap");
 
 * {
   font-family: "Inter", sans-serif;
   user-select: none;
   -webkit-user-drag: none;
-}
-
-.searchContainer {
-  margin: 20px auto;
-  background: #f6f6f6;
-  border-radius: 1px;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.searchContainer img {
-  position: absolute;
-  left: 34%;
-  top: 50%;
-  transform: translate(-34%, -50%);
-  width: 18px;
-}
-
-.searchBox {
-  width: 100%;
-  padding: 18px;
-  border: none;
-  border-radius: 1px;
-  font-size: 16px;
-  outline: none;
-  background-color: #f6f6f6;
-}
-
-.searchBox::placeholder {
-  color: #000;
-  font-family: "Inter", sans-serif;
-  font-size: 16px;
-  font-weight: 200;
-  letter-spacing: 2px;
-  text-align: center;
 }
 
 .profileSection {
@@ -49,28 +14,52 @@
 }
 
 .profileSection .profileLeft .profileMenu {
-  border: 2px solid #000;
+  border: 2px solid #00000014;
   margin-top: 25px;
   text-align: left;
 }
 
 .profileSection .profileLeft .profileMenuName {
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #00000014;
+  padding: 15px 20px;
+}
+
+.profileMenuName.active {
+  background-color: #717984;
+  color: #fff;
 }
 
 .profileSection .profileLeft .profileMenuName a {
   text-decoration: none;
+  color: #555555;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .profileSection .profileLeft .profileMenuName:last-child {
   border-bottom: none;
 }
 
+.profileSection .profileLeft .profileMenuName a.active {
+  color: #fff !important;
+}
+
 .profileSection .profileLeft .profileMenuName h4 {
-  font-weight: 800;
-  font-size: 18px;
-  color: #2e2e2e;
-  margin: 20px 0 20px 20px;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0;
+}
+
+.profileSection .profileLeft .profileImagePhoto {
+  border-radius: 50%;
+  border: 8px solid #3696a0;
+  padding: 8px;
+  width: 100%;
+}
+
+.profileSection .profileLeft .profileIcons {
+  width: 15px;
 }
 
 .profileSection .profileInfo {
@@ -86,10 +75,11 @@
 }
 
 .profileSection .profileInfo h1 {
-  font-size: 45px;
-  font-weight: 900;
+  font-size: 40px;
+  font-weight: 800;
   margin: 0;
   margin-bottom: 20px;
+  font-family: "ABeeZee", sans-serif !important;
 }
 
 .profileSection .profileInfo .companyName {
@@ -100,14 +90,16 @@
 
 .profileSection .profileInfo .companyName span {
   font-size: 22px;
-  font-style: italic;
   margin: 0;
+  font-weight: 600;
+  font-family: "ABeeZee", sans-serif !important;
 }
 
 .profileSection .profileInfo .companyName h3 {
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 500;
   margin: 0;
+  font-family: "ABeeZee", sans-serif !important;
 }
 
 .profileSection .profileInfo .directorName {
@@ -115,14 +107,16 @@
 }
 
 .profileSection .profileInfo .directorName h3 {
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 500;
   margin: 0;
+  font-family: "ABeeZee", sans-serif !important;
 }
 
 .profileSection .profileInfo .directorName span {
+  font-weight: 600;
   font-size: 22px;
-  font-style: italic;
+  font-family: "ABeeZee", sans-serif !important;
 }
 
 .profileSection .profileInfo .companyLocation {
@@ -135,12 +129,16 @@
 .profileSection .profileInfo .companyLocation .location {
   display: flex;
   align-items: center;
+  background-color: #3696a0;
+  padding: 22px;
+  border-radius: 7px;
+  color: #fff;
 }
 
 .profileSection .profileInfo .companyLocation h4 {
-  font-size: 18px;
+  font-size: 16px;
   margin: 0;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .profileSection .profileInfo .companyLocation span {
@@ -156,6 +154,7 @@
 .profileInfo .profileContent .timeline {
   background-color: #f6f6f6;
   padding: 15px;
+  height: 100%;
 }
 
 .profileInfo .profileContent .timeline .timelineYear {
@@ -236,9 +235,11 @@
   align-items: center;
   margin-bottom: 35px;
   margin-top: 13px;
+  gap: 30px;
 }
 
 .profileInfo .profileContent .award .awardText {
+  width: 450px;
   max-width: 500px;
 }
 
@@ -257,8 +258,9 @@
   color: #2c7279;
   font-size: 16px;
   font-weight: 700;
-  border-bottom: 2px solid #2c7279;
+  text-decoration: underline;
   cursor: pointer;
+  margin: 0;
 }
 
 .profileSection .profileCompany {
@@ -268,23 +270,33 @@
   height: 100%;
 }
 
+.profileSection .profileCompany .companyBox {
+  border: 2px solid #3696a0;
+}
+
 .profileSection .profileCompany .relatedCompany {
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #3696a0;
+  padding: 15px;
 }
 
 .profileSection .profileCompany .relatedCompany h3 {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 800;
   text-align: center;
-  margin-bottom: 8px;
+  margin: 0;
 }
 
 .profileSection .profileCompany .companyLogos {
   border-bottom: 2px solid #000;
 }
 
+.profileSection .profileCompany .companyLogos:last-child {
+  border-bottom: none;
+}
+
 .profileSection .profileCompany .companyLogos img {
   margin: 15px 0;
+  /* width: 250px; */
 }
 
 .profileContent .galleryGrid {
@@ -387,10 +399,11 @@
 
 .profileSection .profileCompany .similarProfile {
   margin-top: 88px;
+  border: 2px solid #3696a0;
 }
 
 .profileSection .profileCompany .similarProfile .companyNames {
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #3696a0;
 }
 
 .profileSection .profileCompany .similarProfile .companyNames .companyRow {
@@ -422,10 +435,11 @@
   margin-top: 30px;
   gap: 12px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .profileSection .profileCompany .similarProfile .seeMore h3 {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
 }
 
@@ -464,6 +478,31 @@
   .profileInfo .profileContent .yearWiseContent {
     margin-top: 30px;
   }
+
+  .profileSection .profileCompany {
+    padding: 0 !important;
+  }
+
+  .profileSection .profileCompany .similarProfile .companyNames .companyRow {
+    margin: 20px;
+  }
+
+  .profileInfo .profileContent .award .awardText {
+    width: 100%;
+  }
+
+  .left {
+    left: -20px;
+  }
+
+  .right {
+    right: -20px;
+  }
+
+  .profileInfo .profileContent .award {
+    display: grid;
+    gap: 15px;
+  }
 }
 
 @media (max-width: 991px) {
@@ -478,5 +517,52 @@
 
   .profileSection .profileCompany {
     text-align: left;
+  }
+
+  .profileSection .profileCompany {
+    padding: 0 !important;
+  }
+
+  .profileSection .profileCompany .similarProfile .companyNames .companyRow {
+    margin: 20px;
+  }
+
+  .profileInfo .profileContent .award .awardText {
+    width: 100%;
+  }
+
+  .left {
+    left: -20px;
+  }
+
+  .right {
+    right: -20px;
+  }
+}
+
+/* Loader Styles */
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f9f9f9;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-top: 5px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

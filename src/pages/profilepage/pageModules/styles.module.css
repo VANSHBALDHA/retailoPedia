@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=ABeeZee&display=swap");
 
 * {
   font-family: "Inter", sans-serif;
@@ -17,12 +19,12 @@
 }
 
 .container a {
-  font-size: 16px !important;
-  padding: 16px 0;
+  font-size: 15px !important;
   color: #666666;
   align-items: center;
   font-family: "Inter", sans-serif;
   margin-right: 10px;
+  font-family: "ABeeZee", sans-serif !important;
 }
 
 .profileLogoContent {
@@ -57,13 +59,20 @@
   position: relative;
 }
 
+.getTheApp p {
+  width: 70px;
+  text-align: center;
+  margin: 0 15px;
+  font-family: "ABeeZee", sans-serif !important;
+}
+
 .getTheApp::before,
 .getTheApp::after {
   content: "";
   position: absolute;
   top: -35px;
-  height: 70px;
-  border: 1px solid #666666;
+  height: 95px;
+  border: 1px solid #00000014;
 }
 
 .getTheApp::before {
@@ -81,7 +90,7 @@
 }
 
 .joinButton {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   border: none;
@@ -94,7 +103,7 @@
   border: 1px solid #3696a0;
   color: #3696a0;
   background-color: transparent;
-  font-weight: 700;
+  font-weight: 500;
   border-radius: 24px;
   padding: 7px 30px;
   text-align: center;
@@ -120,6 +129,11 @@
   .getTheApp::after {
     display: none;
   }
+
+  .getTheApp p {
+    margin: 0;
+    width: 100% !important;
+  }
 }
 
 @media (max-width: 991px) {
@@ -135,6 +149,11 @@
   .getTheApp::before,
   .getTheApp::after {
     display: none;
+  }
+
+  .getTheApp p {
+    margin: 0;
+    width: 100% !important;
   }
 }
 
@@ -153,12 +172,16 @@
   justify-content: space-between;
 }
 
+.footerSection .logoContent input {
+  width: 550px;
+}
+
 .footerSection .logoContent .footerLogo {
-  width: 300px;
+  width: 350px;
   max-width: 400px;
 }
 .emailBox {
-  padding: 10px;
+  padding: 11px;
   border: none;
   border-radius: 14px;
   font-size: 16px;
@@ -168,6 +191,7 @@
 
 .emailBox::placeholder {
   letter-spacing: 2px;
+  font-weight: 300;
 }
 
 .submitBtn {
@@ -178,7 +202,11 @@
   font-size: 16px;
   font-weight: 600;
   color: #fff;
-  margin-left: -10px;
+  margin-left: -20px;
+}
+
+.submitBtn img {
+  width: 8px;
 }
 
 .footerSection .logoContent span {
@@ -222,11 +250,16 @@
 
 .copyRight span {
   margin-left: 15px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
+  font-family: "Open Sans", sans-serif !important;
 }
 .socialMenu {
   display: flex;
+}
+
+.socialMenu span {
+  font-weight: 600;
 }
 
 .socialIcon {
@@ -246,15 +279,24 @@
   }
 
   .footerSection .logoContent .footerLogo {
-    width: 300px;
+    width: 300px !important;
   }
 
   .emailBox {
     margin: 10px 0;
   }
 
+  .footerSection .logoContent input {
+    width: 100%;
+  }
+
+  .submitBtn {
+    margin-left: 0;
+  }
+
   .socialMenu {
-    display: grid;
+    display: grid !important;
+    gap: 0 !important;
   }
 
   .copyRight .copyRightImage {
@@ -275,12 +317,20 @@
 
   .footerSection .logoContent .footerLogo {
     width: 400px;
-    margin: 0 auto;
   }
   .footerSection .logoContent {
     display: grid;
     gap: 15px;
     margin: 0 auto;
+  }
+
+  .footerSection .logoContent input {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .submitBtn {
+    margin-left: 0;
   }
 
   .copyRight {

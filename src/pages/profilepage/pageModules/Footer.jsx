@@ -1,21 +1,46 @@
 import React from "react";
 import styles from "./styles.module.css";
+import { Link } from "react-router-dom";
 import footerLogo from "../../../assets/images/logo.jpg";
 import copyImg from "../../../assets/images/Isolation_Mode.svg";
 import facebook from "../../../assets/images/Facebook.png";
 import twitter from "../../../assets/images/Twitter.svg";
-import linkdlen from "../../../assets/images/LinkedIn.png";
+import linkedin from "../../../assets/images/LinkedIn.png";
 import instagram from "../../../assets/images/Instagram.png";
 import google from "../../../assets/images/GooglePlus.svg";
-import footerArrow from "../../../assets/images/FooterArrow.png";
-import { Link } from "react-router-dom";
+import footerArrow from "../../../assets/images/FooterArrow.svg";
+
+const socialLinks = [
+  { icon: facebook, url: "https://facebook.com" },
+  { icon: twitter, url: "https://twitter.com" },
+  { icon: linkedin, url: "https://linkedin.com" },
+  { icon: instagram, url: "https://instagram.com" },
+  { icon: google, url: "https://plus.google.com" },
+];
+
+const footerData = [
+  {
+    title: "RETAILOPEDIA",
+    links: ["Latest News", "All Topics", "About", "Contact Us", "Careers"],
+  },
+  { title: "PEOPLE", links: ["Search", "Trending Now", "Latest News"] },
+  { title: "COMPANIES", links: ["Search", "Trending Now", "Latest News"] },
+  { title: "BRANDS", links: ["Search", "Trending Now", "Latest News"] },
+  { title: "TECH PARTNERS", links: ["Search", "Trending Now", "Latest News"] },
+  { title: "MALLS", links: ["Search", "Trending Now", "Latest News"] },
+  { title: "CONSULTANTS", links: ["Search", "Trending Now", "Latest News"] },
+];
 
 const Footer = () => {
   return (
     <>
       <div className={styles.footerSection}>
         <div className={styles.logoContent}>
-          <img src={footerLogo} className={styles.footerLogo}/>
+          <img
+            src={footerLogo}
+            className={styles.footerLogo}
+            alt="footer_logo"
+          />
           <div>
             <span>Subscribe to our newsletter</span>
             <input
@@ -24,116 +49,24 @@ const Footer = () => {
               placeholder="Enter e-mail"
             />
             <button className={styles.submitBtn}>
-              SUBMIT <img src={footerArrow} />
+              SUBMIT <img src={footerArrow} alt="footer_arrow" />
             </button>
           </div>
         </div>
         <div>
           <div className={styles.footerMenu}>
-            <div>
-              <h3>RETAILOPEDIA</h3>
+            {footerData.map((section) => (
               <div>
-                <h5>
-                  <Link to="/profile">Latest News</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">All Topics</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">About</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">Contact Us</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">Careers</Link>
-                </h5>
+                <h3>{section?.title}</h3>
+                <div>
+                  {section?.links.map((link, index) => (
+                    <h5 key={index}>
+                      <Link to="/profile">{link}</Link>
+                    </h5>
+                  ))}
+                </div>
               </div>
-            </div>
-            <div>
-              <h3>PEOPLE</h3>
-              <div>
-                <h5>
-                  <Link to="/profile">Search</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">Trending Now</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">Latest News</Link>
-                </h5>
-              </div>
-            </div>
-            <div>
-              <h3>COMPANIES</h3>
-              <div>
-                <h5>
-                  <Link to="/profile">Search</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">Trending Now</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">Latest News</Link>
-                </h5>
-              </div>
-            </div>
-            <div>
-              <h3>BRANDS</h3>
-              <div>
-                <h5>
-                  <Link to="/profile">Search</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">Trending Now</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">Latest News</Link>
-                </h5>
-              </div>
-            </div>
-            <div>
-              <h3>TECH PARTNERS</h3>
-              <div>
-                <h5>
-                  <Link to="/profile">Search</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">Trending Now</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">Latest News</Link>
-                </h5>
-              </div>
-            </div>
-            <div>
-              <h3>MALLS</h3>
-              <div>
-                <h5>
-                  <Link to="/profile">Search</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">Trending Now</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">Latest News</Link>
-                </h5>
-              </div>
-            </div>
-            <div>
-              <h3>CONSULTANTS</h3>
-              <div>
-                <h5>
-                  <Link to="/profile">Search</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">Trending Now</Link>
-                </h5>
-                <h5>
-                  <Link to="/profile">Latest News</Link>
-                </h5>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -146,21 +79,16 @@ const Footer = () => {
           <div className={styles.socialMenu}>
             <span>FOLLOW US</span>
             <div className={styles.socialIcon}>
-              <Link to="/profile">
-                <img src={facebook} alt="" />
-              </Link>
-              <Link to="/profile">
-                <img src={twitter} alt="" />
-              </Link>
-              <Link to="/profile">
-                <img src={linkdlen} alt="" />
-              </Link>
-              <Link to="/profile">
-                <img src={instagram} alt="" />
-              </Link>
-              <Link to="/profile">
-                <img src={google} alt="" />
-              </Link>
+              {socialLinks.map(({ icon, url }, idx) => (
+                <Link
+                  key={idx}
+                  to={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={icon} alt={`social-icon-${idx}`} />
+                </Link>
+              ))}
             </div>
           </div>
         </div>

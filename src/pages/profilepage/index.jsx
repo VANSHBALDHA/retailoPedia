@@ -1,19 +1,15 @@
 import styles from "./styles.module.css";
 import searchIcon from "../../assets/images/Search.svg";
 import profileImage from "../../assets/images/profileImage.png";
-import companyLogo1 from "../../assets/images/companyLogo1.png";
-import companyLogo2 from "../../assets/images/companyLogo2.png";
-import companyLogo3 from "../../assets/images/companyLogo3.png";
 import instagram from "../../assets/images/Instagram.png";
 import linkedin from "../../assets/images/LinkedIn.png";
 import facebook from "../../assets/images/Facebook.png";
-import downArrow from "../../assets/images/downArrow.png";
-import upArrow from "../../assets/images/upArrow.png";
+import downArrow from "../../assets/images/downArrow.svg";
+import upArrow from "../../assets/images/upArrow.svg";
 import { Link } from "react-router-dom";
 import Footer from "./pageModules/Footer";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
-
 import photoGallery1 from "../../assets/images/photoGallery1.png";
 import photoGallery2 from "../../assets/images/photoGallery2.png";
 import photoGallery3 from "../../assets/images/photoGallery3.png";
@@ -24,14 +20,79 @@ import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import articleImage from "../../assets/images/ArticleImg.png";
 import gulfNews from "../../assets/images/gulfNews.png";
-import leftArrow from "../../assets/images/leftArrow.png";
-import rightArrow from "../../assets/images/rightArrow.png";
+import leftArrow from "../../assets/images/leftArrow.svg";
+import rightArrow from "../../assets/images/rightArrow.svg";
 import Header from "./pageModules/Header";
+import { useQuery } from "@tanstack/react-query";
+
+import profileIcon from "../../assets/images/profileMenu1.svg";
+import profileIcon1 from "../../assets/images/profileImageName2.svg";
+import profileIcon2 from "../../assets/images/profileImageName3.svg";
+import profileIcon3 from "../../assets/images/profileImageName4.svg";
+import profileIcon4 from "../../assets/images/profileImageName5.svg";
+import profileIcon5 from "../../assets/images/profileImageName6.svg";
+import profileIcon6 from "../../assets/images/profileImageName7.svg";
+import profileIcon7 from "../../assets/images/profileImageName8.svg";
+import profileIcon8 from "../../assets/images/profileImageName2.svg";
+import profileIcon9 from "../../assets/images/profileImageName2.svg";
+
+import profileServices from "../../services/Profile";
+
+const imagePathURL = process.env.REACT_APP_IMAGE;
+
+const profileMenu = [
+  {
+    id: "profile",
+    name: "PROFILE",
+    image: profileIcon,
+  },
+  {
+    id: "early-life",
+    name: "EARLY LIFE",
+    image: profileIcon9,
+  },
+  {
+    id: "career",
+    name: "CAREER",
+    image: profileIcon9,
+  },
+  {
+    id: "achievement-recognitions",
+    name: "ACHIEVEMENT & RECOGNITIONS",
+    image: profileIcon2,
+  },
+  {
+    id: "philosophy",
+    name: "PHILOSOPHY",
+    image: profileIcon3,
+  },
+  {
+    id: "future-plans",
+    name: "FUTURE PLANS",
+    image: profileIcon4,
+  },
+  {
+    id: "videos",
+    name: "VIDEOS",
+    image: profileIcon5,
+  },
+  {
+    id: "articles",
+    name: "ARTICLES",
+    image: profileIcon6,
+  },
+  {
+    id: "social-media",
+    name: "SOCIAL MEDIA",
+    image: profileIcon7,
+  },
+];
 
 const ProfilePage = () => {
   const videoSec = useRef(null);
   const articleSec = useRef(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [activeLink, setActiveLink] = useState("");
+  const [showMore, setShowMore] = useState(false);
   const [checkedYears, setCheckedYears] = useState([]);
   const [openSections, setOpenSections] = useState({
     earlyLife: true,
@@ -57,141 +118,99 @@ const ProfilePage = () => {
     });
   };
 
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["profileData"],
+    queryFn: () =>
+      profileServices.profileData({
+        peopleId: "18",
+      }),
+    keepPreviousData: true,
+    onError: (err) => {
+      console.log("Error fetching profileData:", err);
+    },
+  });
+
+  const relatedCompanyList = data?.relatedCompanies || [];
+  const similarProfileList = data?.similarProfile || [];
+  const peopleDataList = data?.peopleData || [];
+
+  if (isLoading && !data?.length)
+    return (
+      <div className={styles.loaderContainer}>
+        <div className={styles.loader}></div>
+      </div>
+    );
+
   return (
     <>
       <Header />
-      <div className="container">
-        <div className={styles.searchContainer}>
-          {!searchTerm && <img src={searchIcon} alt="search-icon" />}
-          <input
-            type="text"
-            className={styles.searchBox}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search with name/company/area/position"
-          />
-        </div>
-      </div>
 
       <div className={styles.profileSection}>
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-3 col-md-12 col-12">
               <div className={styles.profileLeft}>
-                <img src={profileImage} alt="" className="w-100" />
+                <img
+                  src={profileImage}
+                  alt=""
+                  className={styles.profileImagePhoto}
+                />
                 <div className={styles.profileMenu}>
-                  <div className={styles.profileMenuName}>
-                    <Link to="/profile">
-                      <h4>PROFILE</h4>
-                    </Link>
-                  </div>
-                  <div className={styles.profileMenuName}>
-                    <Link to="/profile">
-                      <h4>EARLY LIFE</h4>
-                    </Link>
-                  </div>
-                  <div className={styles.profileMenuName}>
-                    <Link to="/profile">
-                      <h4>CAREER</h4>
-                    </Link>
-                  </div>
-                  <div className={styles.profileMenuName}>
-                    <Link to="/profile">
-                      <h4>ACHIEVEMENT & RECOGNITIONS</h4>
-                    </Link>
-                  </div>
-                  <div className={styles.profileMenuName}>
-                    <Link to="/profile">
-                      <h4>PHILOSOPHY</h4>
-                    </Link>
-                  </div>
-                  <div className={styles.profileMenuName}>
-                    <Link to="/profile">
-                      <h4>FUTURE PLANS</h4>
-                    </Link>
-                  </div>
-                  <div className={styles.profileMenuName}>
-                    <Link to="/profile">
-                      <h4>VIDEOS</h4>
-                    </Link>
-                  </div>
-                  <div className={styles.profileMenuName}>
-                    <Link to="/profile">
-                      <h4>ARTICLES</h4>
-                    </Link>
-                  </div>
-                  <div className={styles.profileMenuName}>
-                    <Link to="/profile">
-                      <h4>SOCIAL MEDIA</h4>
-                    </Link>
-                  </div>
+                  {profileMenu?.map((item, index) => (
+                    <div
+                      key={item.id}
+                      className={`${styles.profileMenuName} ${
+                        activeLink === item.id ? styles.active : ""
+                      }`}
+                      onClick={() => setActiveLink(item.id)}
+                    >
+                      <a
+                        href={`#${item?.id}`}
+                        className={`${
+                          activeLink === item.id ? styles.active : ""
+                        }`}
+                      >
+                        <img
+                          src={item?.image}
+                          alt={item?.name}
+                          className={styles.profileIcons}
+                        />
+                        <h4>{item?.name}</h4>
+                      </a>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
             <div className="col-lg-6 col-md-12 col-12">
-              <div className={styles.profileInfo}>
-                <h1>RAZA BEIG</h1>
+              {/* PROFILEINFO */}
+              <div className={styles.profileInfo} id="profile">
+                <h1>{peopleDataList?.name}</h1>
                 <div className={styles.companyName}>
                   <div>
                     <span>CEO & Founding Director</span>
                     <h3>Splash</h3>
                   </div>
-                  <div>
-                    <span>Director</span>
-                    <h3>Landmark Group</h3>
-                  </div>
                 </div>
                 <div className={styles.directorName}>
                   <span>Director</span>
                   <h3>Centrepoint</h3>
+                  <h3>Landmark Group</h3>
                 </div>
                 <div className={styles.companyLocation}>
                   <div className={styles.location}>
-                    <h4>LOCATION:</h4>
-                    <span>Dubai, UAE</span>
+                    <h4>LOCATION: DUBAI, UAE</h4>
                   </div>
                   <div className={styles.location}>
-                    <h4>YEARS ACTIVE:</h4>
-                    <span>1992 - Present</span>
+                    <h4>YEARS ACTIVE 1992 - PRESENT</h4>
                   </div>
                 </div>
                 <div className={styles.profileContent}>
-                  <p>
-                    Raza Beig is the CEO of Splash and ICONIC, leading fashion
-                    brands under the Landmark Group. He has been instrumental in
-                    expanding Splash to over 200 stores across 13 countries.
-                  </p>
-                  <p>
-                    When Splash was launched in 1993, Raza Beig was involved in
-                    almost every aspect of the business from buying to visual
-                    merchandising, budgeting and retail operations. Over the
-                    past three decades, Beig’s strong dedication and passion
-                    guided Splash to become a category leader and a core brand
-                    within the Landmark Group’s portfolio.
-                  </p>
-                  <p>
-                    Since the inception of Splash, Beig has been actively
-                    involved with the overall business development and retail
-                    buying for the brand. In 1998, he helped set up Lifestyle, a
-                    department chain in India.
-                  </p>
-                  <p>
-                    Sometime in early 2000, he was appointed Managing Director
-                    of Splash and was invited to be part of the Board of
-                    Directors of Landmark Group. Eventually, in 2006 he was
-                    appointed the CEO of Splash.
-                  </p>
-                  <p>
-                    Along with Splash, Beig heads ICONIC. Launched in February
-                    2010, it is one of the fastest growing brands of Landmark
-                    Group with over 38 stores in 5 countries, UAE, KSA, Kuwait,
-                    Qatar and Oman.
-                  </p>
-                  <p>
-                    Recently, Baig co-founded Artfi, a platform integrating art
-                    and blockchain technology, aiming to democratize art
-                    ownership.
-                  </p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: peopleDataList?.about,
+                    }}
+                  />
                 </div>
               </div>
 
@@ -202,112 +221,31 @@ const ProfilePage = () => {
                   <div className="row">
                     <div className="col-lg-4 col-md-4 col-12">
                       <div className={styles.timeline}>
-                        {[
-                          "1966",
-                          "1979",
-                          "1986 - 1992",
-                          "1989 - 1992",
-                          "1990 - 1992",
-                          "1992",
-                          "1993",
-                          "1998",
-                          "Early 2000s",
-                          "2006",
-                          "2010",
-                          "2017",
-                          "2019-2020",
-                          "2020",
-                          "2024",
-                        ].map((year) => (
-                          <div className={styles.csmCheckbox} key={year}>
+                        {peopleDataList?.timeLine?.map((year) => (
+                          <div className={styles.csmCheckbox} key={year?.year}>
                             <input
                               type="checkbox"
-                              id={year}
-                              checked={checkedYears.includes(year)}
-                              onChange={() => handleCheckboxChange(year)}
+                              id={year?.year}
+                              checked={checkedYears.includes(year?.year)}
+                              onChange={() => handleCheckboxChange(year?.year)}
                             />
-                            <label htmlFor={year}>{year}</label>
+                            <label htmlFor={year?.year}>{year?.year}</label>
                           </div>
                         ))}
                       </div>
                     </div>
                     <div className="col-lg-8 col-md-8 col-12">
                       <div className={styles.yearWiseContent}>
-                        <div className={styles.timeLineContent}>
-                          <h3>1966</h3>
-                          <span>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore
-                          </span>
-                        </div>
-                        <div className={styles.timeLineContent}>
-                          <h3>1979</h3>
-                          <span>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat.
-                          </span>
-                        </div>
-                        <div className={styles.timeLineContent}>
-                          <h3>1986-1992</h3>
-                          <span>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore
-                          </span>
-                        </div>
-                        <div className={styles.timeLineContent}>
-                          <h3>1966</h3>
-                          <span>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore
-                          </span>
-                        </div>
-                        <div className={styles.timeLineContent}>
-                          <h3>1979</h3>
-                          <span>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat.
-                          </span>
-                        </div>
-                        <div className={styles.timeLineContent}>
-                          <h3>1986-1992</h3>
-                          <span>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore
-                          </span>
-                        </div>
-                        <div className={styles.timeLineContent}>
-                          <h3>1966</h3>
-                          <span>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore
-                          </span>
-                        </div>
-                        <div className={styles.timeLineContent}>
-                          <h3>1979</h3>
-                          <span>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat.
-                          </span>
-                        </div>
-                        <div className={styles.timeLineContent}>
-                          <h3>1986-1992</h3>
-                          <span>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore
-                          </span>
-                        </div>
+                        {peopleDataList?.timeLine?.map((data) => {
+                          return (
+                            <>
+                              <div className={styles.timeLineContent}>
+                                <h3>{data?.year}</h3>
+                                <span>{data?.description}</span>
+                              </div>
+                            </>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -315,7 +253,7 @@ const ProfilePage = () => {
               </div>
 
               {/* EARLY LIFE*/}
-              <div className={styles.profileInfo}>
+              <div className={styles.profileInfo} id="early-life">
                 <div
                   className={styles.toggleImg}
                   onClick={() => handleToggle("earlyLife")}
@@ -329,31 +267,18 @@ const ProfilePage = () => {
                 {openSections.earlyLife && (
                   <>
                     <div className={styles.profileContent}>
-                      <p>
-                        Raza Beig, born in Mumbai, India, began his
-                        entrepreneurial journey at the age of 13 by tutoring his
-                        laundryman's son in exchange for laundry services. 
-                      </p>
-                      <p>
-                        During his college years, he founded 'Raza Classes,' a
-                        tutorial service for students rejected by other
-                        institutions, and managed it for seven years. 
-                      </p>
-                      <p>
-                        He also invested in a friend's shirt manufacturing
-                        factory, laying the foundation for his understanding of
-                        fashion and garment quality. Additionally, he acquired a
-                        struggling cable business in Bandra, Mumbai, for Rs 3.5
-                        lakh, revitalizing it through direct engagement with
-                        customers and effective management.
-                      </p>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: peopleDataList?.earlyLife,
+                        }}
+                      />
                     </div>
                   </>
                 )}
               </div>
 
-              {/* career*/}
-              <div className={styles.profileInfo}>
+              {/* CAREER*/}
+              <div className={styles.profileInfo} id="career">
                 <div
                   className={styles.toggleImg}
                   onClick={() => handleToggle("career")}
@@ -435,7 +360,7 @@ const ProfilePage = () => {
               </div>
 
               {/* MAJOR ACHIEVEMENTS AND RECOGNITIONS*/}
-              <div className={styles.profileInfo}>
+              <div className={styles.profileInfo} id="achievement-recognitions">
                 <div
                   className={styles.toggleImg}
                   onClick={() => handleToggle("major")}
@@ -519,7 +444,7 @@ const ProfilePage = () => {
               </div>
 
               {/* FUTURE PLANS */}
-              <div className={styles.profileInfo}>
+              <div className={styles.profileInfo} id="future-plans">
                 <div
                   className={styles.toggleImg}
                   onClick={() => handleToggle("future")}
@@ -534,26 +459,17 @@ const ProfilePage = () => {
                 {openSections.future && (
                   <>
                     <div className={styles.profileContent}>
-                      <p>
-                        Raza Classes (1986-1992): While in college, Raza founded
-                        'Raza Classes,' a tutorial service catering to students
-                        who were rejected by other institutions. He employed his
-                        friends as teachers, emphasizing preparation and
-                        dedication. He managed this venture for seven years
-                        before passing it on to his fellow educators. 
-                      </p>
-                      <p>
-                        Garment Manufacturing Investment (1989-1992): Raza
-                        invested in a friend's shirt manufacturing factory,
-                        laying the foundation for his understanding of fashion
-                        and garment quality. 
-                      </p>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: peopleDataList?.futureOutlook,
+                        }}
+                      />
                     </div>
                   </>
                 )}
               </div>
 
-              {/* photo gallery */}
+              {/* PHOTO GALLERY */}
               <div className={styles.profileInfo}>
                 <h5>PHOTO GALLERY</h5>
                 <div className={styles.profileContent}>
@@ -581,8 +497,8 @@ const ProfilePage = () => {
                 </div>
               </div>
 
-              {/* videos */}
-              <div className={styles.profileInfo}>
+              {/* VIDEOS */}
+              <div className={styles.profileInfo} id="videos">
                 <h5>VIDEOS</h5>
                 <div
                   className={`${styles.profileContent} ${styles.articleSection}`}
@@ -616,28 +532,34 @@ const ProfilePage = () => {
                       el: ".swiper-pagination",
                     }}
                   >
-                    {Array(4)
-                      .fill()
-                      .map((_, index) => (
-                        <SwiperSlide key={index}>
-                          <div className={styles.videoSlider}>
-                            <img
-                              src={articleImage}
-                              alt="currency"
-                              className="w-100"
-                            />
-                            <h4>Raza Beig on importance of leadership</h4>
-                            <span>Lorem Ipsum dolor mit</span>
-                            <p>Source: Lorem Ipsum dolor mit</p>
+                    {peopleDataList?.videoLinks?.map((data, index) => (
+                      <SwiperSlide key={index}>
+                        <div className={styles.videoSlider}>
+                          <div className={styles.videoWrapper}>
+                            <iframe
+                              width="280"
+                              height="200"
+                              src={`https://www.youtube.com/embed/${
+                                data.split("v=")[1]
+                              }`}
+                              title="YouTube video"
+                              frameBorder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            ></iframe>
                           </div>
-                        </SwiperSlide>
-                      ))}
+                          <h4>Raza Beig on importance of leadership</h4>
+                          <span>Lorem Ipsum dolor mit</span>
+                          <p>Source: Lorem Ipsum dolor mit</p>
+                        </div>
+                      </SwiperSlide>
+                    ))}
                   </Swiper>
                 </div>
               </div>
 
-              {/* articles */}
-              <div className={styles.profileInfo}>
+              {/* ARTICLES */}
+              <div className={styles.profileInfo} id="articles">
                 <h5>ARTICLES</h5>
                 <div
                   className={`${styles.profileContent} ${styles.articleSection}`}
@@ -666,7 +588,7 @@ const ProfilePage = () => {
                     loop={true}
                     onSwiper={(swiper) => (articleSec.current = swiper)}
                     autoplay={{
-                      delay: 4000000,
+                      delay: 4000,
                       disableOnInteraction: false,
                     }}
                     pagination={{
@@ -705,8 +627,8 @@ const ProfilePage = () => {
                 </div>
               </div>
 
-              {/* social media */}
-              <div className={styles.profileInfo}>
+              {/* SOCIAL MEDIA */}
+              <div className={styles.profileInfo} id="social-media">
                 <h5>SOCIAL MEDIA</h5>
                 <div className={styles.socialIcon}>
                   <Link to="#">
@@ -721,87 +643,51 @@ const ProfilePage = () => {
                 </div>
               </div>
             </div>
-
-            {/* RELATED COMPANIES */}
             <div className="col-lg-3 col-md-12 col-12">
               <div className={styles.profileCompany}>
-                <div>
+                {/* RELATED COMPANIES */}
+                <div className={styles.companyBox}>
                   <div className={styles.relatedCompany}>
                     <h3>RELATED COMPANIES</h3>
                   </div>
-                  <div className={styles.companyLogos}>
-                    <img src={companyLogo1} alt="" />
-                  </div>
-                  <div className={styles.companyLogos}>
-                    <img src={companyLogo2} alt="" />
-                  </div>
-                  <div className={styles.companyLogos}>
-                    <img src={companyLogo3} alt="" />
-                  </div>
+                  {relatedCompanyList?.map((logo, index) => (
+                    <div className={styles.companyLogos}>
+                      <img
+                        key={index}
+                        src={`${imagePathURL + logo?.companyImage}`}
+                        alt={`Company logo ${index + 1}`}
+                      />
+                    </div>
+                  ))}
                 </div>
+
+                {/* SIMILAR PROFILES */}
                 <div className={styles.similarProfile}>
                   <div className={styles.relatedCompany}>
                     <h3>SIMILAR PROFILES</h3>
                   </div>
-                  <div className={styles.companyNames}>
-                    <div className={styles.companyRow}>
-                      <h3>MARK TESSEYMAN</h3>
-                      <span>CEO</span>
-                      <h4>Liwa Trading Enterprises LLC</h4>
-                    </div>
+                  <div>
+                    {similarProfileList
+                      .slice(0, showMore ? similarProfileList.length : 5)
+                      .map((profile, index) => (
+                        <div key={index} className={styles.companyNames}>
+                          <div className={styles.companyRow}>
+                            <h3>{profile.name}</h3>
+                            <span>{profile.designation}</span>
+                            <h4>{profile.company}</h4>
+                          </div>
+                        </div>
+                      ))}
                   </div>
-                  <div className={styles.companyNames}>
-                    <div className={styles.companyRow}>
-                      <h3>MARK TESSEYMAN</h3>
-                      <span>CEO</span>
-                      <h4>Liwa Trading Enterprises LLC</h4>
-                    </div>
-                  </div>
-                  <div className={styles.companyNames}>
-                    <div className={styles.companyRow}>
-                      <h3>MARK TESSEYMAN</h3>
-                      <span>CEO</span>
-                      <h4>Liwa Trading Enterprises LLC</h4>
-                    </div>
-                  </div>
-                  <div className={styles.companyNames}>
-                    <div className={styles.companyRow}>
-                      <h3>MARK TESSEYMAN</h3>
-                      <span>CEO</span>
-                      <h4>Liwa Trading Enterprises LLC</h4>
-                    </div>
-                  </div>
-                  <div className={styles.companyNames}>
-                    <div className={styles.companyRow}>
-                      <h3>MARK TESSEYMAN</h3>
-                      <span>CEO</span>
-                      <h4>Liwa Trading Enterprises LLC</h4>
-                    </div>
-                  </div>
-                  <div className={styles.companyNames}>
-                    <div className={styles.companyRow}>
-                      <h3>MARK TESSEYMAN</h3>
-                      <span>CEO</span>
-                      <h4>Liwa Trading Enterprises LLC</h4>
-                    </div>
-                  </div>
-                  <div className={styles.companyNames}>
-                    <div className={styles.companyRow}>
-                      <h3>MARK TESSEYMAN</h3>
-                      <span>CEO</span>
-                      <h4>Liwa Trading Enterprises LLC</h4>
-                    </div>
-                  </div>
-                  <div className={styles.companyNames}>
-                    <div className={styles.companyRow}>
-                      <h3>MARK TESSEYMAN</h3>
-                      <span>CEO</span>
-                      <h4>Liwa Trading Enterprises LLC</h4>
-                    </div>
-                  </div>
-                  <div className={styles.seeMore}>
-                    <h3>See More</h3>
-                    <img src={downArrow} alt="arrow-down" />
+                  <div
+                    className={styles.seeMore}
+                    onClick={() => setShowMore(!showMore)}
+                  >
+                    <h3>{showMore ? "See Less" : "See More"}</h3>
+                    <img
+                      src={showMore ? upArrow : downArrow}
+                      alt="toggle-arrow"
+                    />
                   </div>
                 </div>
               </div>
